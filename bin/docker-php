@@ -1,0 +1,21 @@
+#!/bin/bash
+#
+if [ $# -ne 2 ]
+then
+    echo 'please input <version up|stop|restart>'
+    exit 0
+fi
+cd $HOME/Docker/php$1-laravel/
+if [ $2 == up ]
+then
+    docker-compose up -d
+elif [ $2 == stop ]
+then
+    docker-compose stop
+elif [ $2 == restart ]
+then
+    docker-compose stop
+    docker-compose up -d
+else
+    echo '参数错误'
+fi

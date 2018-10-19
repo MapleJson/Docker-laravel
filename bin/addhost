@@ -1,0 +1,24 @@
+#!/bin/bash
+#
+if [ $# -ne 2 ];then
+        echo "Usage : `basename $0` somehost.com /you/app/path"
+        exit 4
+fi
+
+# if  [ ! -d $2 ] ;then
+#         echo -e "please check you path,not find $2\nUsage : `basename $0` somehost.com /you/app/path"
+# exit 3
+# fi
+
+echo "127.0.0.1       $1" >> /etc/hosts
+
+echo "$1 host add to /etc/hosts successful!"
+
+touch "${HOME}/Docker/nginx/${1}.conf"
+
+cat $HOME/Docker/nginx/template.conf | sed s@template.com@"$1"@ |sed s@/php/template@"$2"@ > $HOME/Docker/nginx/${1}.conf
+if [ $? -eq 0 ];then
+        echo -e "touch ${1}.conf successful!\nplease sudo nginx -s reload"
+else
+        echo "can't touch ${1}.conf"
+fi
