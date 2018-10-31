@@ -1,0 +1,28 @@
+#!/bin/bash
+if [ $# -ne 1 ]
+then
+        echo 'please input <start|restart|stop>'
+        exit 0
+fi
+if [ $1 == start ]
+then
+    brew services start php
+    brew services start redis
+    brew services start mongodb
+    nginx
+    mysql.server start
+elif [ $1 == restart ]
+then
+    brew services restart php
+    brew services restart redis
+    brew services restart mongodb
+    nginx -s reload
+    mysql.server restart
+elif [ $1 == stop ]
+then
+    brew services stop php
+    brew services stop redis
+    brew services stop mongodb
+    nginx -s stop
+    mysql.server stop
+fi
