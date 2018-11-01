@@ -48,7 +48,7 @@ services:
     - redis-session
     - mongo-server
     ports:
-      - 82:80
+      - 70:80
     volumes:
       - $HOME/Docker/nginx:/etc/nginx/conf.d
       - $HOME/Docker/www:/data/www
