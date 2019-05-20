@@ -41,7 +41,7 @@ services:
   web-nginx-php56:
     hostname: web-nginx-php56
     container_name: web-nginx-php56
-    image: maple52zoe/maple-centos7-laravel5.6
+    image: maple52zoe/laravel-php56:1.0
     links:
     - mysql-server
     - redis-server
