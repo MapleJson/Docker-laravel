@@ -65,7 +65,7 @@ services:
   web-nginx-php70:
     hostname: web-nginx-php70
     container_name: web-nginx-php70
-    image: maple52zoe/laravel-php70:1.0
+    image: maple52zoe/laravel-php70:2.0
     links:
     - mysql-server
     - redis-server
