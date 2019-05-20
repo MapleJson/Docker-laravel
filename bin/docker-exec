@@ -1,10 +1,13 @@
 #!/bin/bash
 if [ $# -ne 1 ]
 then
-        echo 'please input <70|71|72>'
+        echo 'please input <56|70|71|72>'
         exit 0
 fi
-if [ $1 == 70 ]
+if [ $1 == 56 ]
+then
+    bash -c "clear && docker exec -it web-nginx-php56 bash"
+elif [ $1 == 70 ]
 then
     bash -c "clear && docker exec -it web-nginx-php70 bash"
 elif [ $1 == 71 ]

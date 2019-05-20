@@ -1,0 +1,135 @@
+version: '3'
+services:
+  mysql-server:
+    hostname: mysql-server
+    container_name: mysql-server
+    image: mysql:5.7
+    volumes:
+      - $HOME/Docker/mysql57/conf.d/mysqld.cnf:/etc/mysql/mysql.conf.d/mysqld.cnf
+      - $HOME/Docker/mysql57/all/data:/var/lib/mysql
+    command: --character-set-server=utf8
+    ports:
+      - 3307:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: 123456
+      MYSQL_DATABASE: myphp
+      MYSQL_USER: php
+      MYSQL_PASSWORD: php-mysql
+
+  redis-server:
+    hostname: redis-server
+    container_name: redis-server
+    image: redis
+    ports:
+      - 6380:6379
+
+  redis-session:
+    hostname: redis-session
+    container_name: redis-session
+    image: redis
+
+  mongo-server:
+    hostname: mongo-server
+    container_name: mongo-server
+    image: mongo
+    ports:
+      - 27018:27017
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: 123456
+
+  web-nginx-php56:
+    hostname: web-nginx-php56
+    container_name: web-nginx-php56
+    image: maple52zoe/maple-centos7-laravel5.6
+    links:
+    - mysql-server
+    - redis-server
+    - redis-session
+    - mongo-server
+    ports:
+      - 56:80
+    volumes:
+      - $HOME/Docker/nginx:/etc/nginx/conf.d
+      - $HOME/Docker/www:/data/www
+    environment:
+      DB_SERVER_HOST: 127.0.0.1
+      MYSQL_DATABASE: myphp
+      MYSQL_USER: php
+      MYSQL_PASSWORD: php-mysql
+      MYSQL_ROOT_PASSWORD: 123456
+      PHP_TZ: Asia/Shanghai
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: 123456
+
+  web-nginx-php70:
+    hostname: web-nginx-php70
+    container_name: web-nginx-php70
+    image: maple52zoe/laravel-php70:1.0
+    links:
+    - mysql-server
+    - redis-server
+    - redis-session
+    - mongo-server
+    ports:
+      - 70:80
+    volumes:
+      - $HOME/Docker/nginx:/etc/nginx/conf.d
+      - $HOME/Docker/www:/data/www
+    environment:
+      DB_SERVER_HOST: 127.0.0.1
+      MYSQL_DATABASE: myphp
+      MYSQL_USER: php
+      MYSQL_PASSWORD: php-mysql
+      MYSQL_ROOT_PASSWORD: 123456
+      PHP_TZ: Asia/Shanghai
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: 123456
+
+  web-nginx-php71:
+    hostname: web-nginx-php71
+    container_name: web-nginx-php71
+    image: maple52zoe/laravel-php71:1.0
+    links:
+    - mysql-server
+    - redis-server
+    - redis-session
+    - mongo-server
+    ports:
+      - 71:80
+    volumes:
+      - $HOME/Docker/nginx:/etc/nginx/conf.d
+      - $HOME/Docker/www:/data/www
+    environment:
+      DB_SERVER_HOST: 127.0.0.1
+      MYSQL_DATABASE: myphp
+      MYSQL_USER: php
+      MYSQL_PASSWORD: php-mysql
+      MYSQL_ROOT_PASSWORD: 123456
+      PHP_TZ: Asia/Shanghai
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: 123456
+
+  web-nginx-php72:
+    hostname: web-nginx-php72
+    container_name: web-nginx-php72
+    image: maple52zoe/laravel-environment:1.0
+    links:
+    - mysql-server
+    - redis-server
+    - redis-session
+    - mongo-server
+    ports:
+      - 72:80
+    volumes:
+      - $HOME/Docker/nginx:/etc/nginx/conf.d
+      - $HOME/Docker/www:/data/www
+    environment:
+      DB_SERVER_HOST: 127.0.0.1
+      MYSQL_DATABASE: myphp
+      MYSQL_USER: php
+      MYSQL_PASSWORD: php-mysql
+      MYSQL_ROOT_PASSWORD: 123456
+      PHP_TZ: Asia/Shanghai
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: 123456
