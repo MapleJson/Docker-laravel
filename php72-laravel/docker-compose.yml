@@ -9,7 +9,7 @@ services:
       - $HOME/Docker/mysql57/72/data:/var/lib/mysql
     command: --character-set-server=utf8
     ports:
-      - 3306:3306
+      - 3372:3306
     environment:
       MYSQL_ROOT_PASSWORD: 123456
       MYSQL_DATABASE: myphp
@@ -21,7 +21,7 @@ services:
     container_name: redis-server
     image: redis
     ports:
-      - 6379:6379
+      - 6372:6379
 
   redis-session:
     hostname: redis-session
@@ -33,7 +33,7 @@ services:
     container_name: mongo-server
     image: mongo
     ports:
-      - 27017:27017
+      - 27072:27017
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: 123456
@@ -48,7 +48,7 @@ services:
     - redis-session
     - mongo-server
     ports:
-      - 80:80
+      - 72:80
     volumes:
       - $HOME/Docker/nginx:/etc/nginx/conf.d
       - $HOME/Docker/www:/data/www
