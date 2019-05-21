@@ -41,7 +41,7 @@ services:
   web-nginx-php56:
     hostname: web-nginx-php56
     container_name: web-nginx-php56
-    image: maple52zoe/laravel-php56:1.0
+    image: maple52zoe/laravel-php56:2.0
     links:
     - mysql-server
     - redis-server
@@ -89,7 +89,7 @@ services:
   web-nginx-php71:
     hostname: web-nginx-php71
     container_name: web-nginx-php71
-    image: maple52zoe/laravel-php71:1.0
+    image: maple52zoe/laravel-php71:2.0
     links:
     - mysql-server
     - redis-server
@@ -113,7 +113,7 @@ services:
   web-nginx-php72:
     hostname: web-nginx-php72
     container_name: web-nginx-php72
-    image: maple52zoe/laravel-environment:1.0
+    image: maple52zoe/laravel-php72:1.0
     links:
     - mysql-server
     - redis-server
