@@ -76,7 +76,9 @@ services:
       - 56:80
     volumes:
       - $HOME/Docker/nginx:/etc/nginx/conf.d
+      - $HOME/docker/nginx/nginx.conf.notcache:/etc/nginx/nginx.conf
       - $HOME/Docker/www:/home/data/www
+      - $HOME/Docker/ini/56/php.ini:/etc/php.ini
     environment:
       DB_SERVER_HOST: 127.0.0.1
       MYSQL_DATABASE: myphp
@@ -100,7 +102,9 @@ services:
       - 70:80
     volumes:
       - $HOME/Docker/nginx:/etc/nginx/conf.d
+      - $HOME/docker/nginx/nginx.conf.notcache:/etc/nginx/nginx.conf
       - $HOME/Docker/www:/home/data/www
+      - $HOME/Docker/ini/70/php.ini:/etc/php.ini
     environment:
       DB_SERVER_HOST: 127.0.0.1
       MYSQL_DATABASE: myphp
@@ -124,7 +128,9 @@ services:
       - 71:80
     volumes:
       - $HOME/Docker/nginx:/etc/nginx/conf.d
+      - $HOME/docker/nginx/nginx.conf.notcache:/etc/nginx/nginx.conf
       - $HOME/Docker/www:/home/data/www
+      - $HOME/Docker/ini/71/php.ini:/etc/php.ini
     environment:
       DB_SERVER_HOST: 127.0.0.1
       MYSQL_DATABASE: myphp
@@ -148,7 +154,9 @@ services:
       - 72:80
     volumes:
       - $HOME/Docker/nginx:/etc/nginx/conf.d
+      - $HOME/docker/nginx/nginx.conf.notcache:/etc/nginx/nginx.conf
       - $HOME/Docker/www:/home/data/www
+      - $HOME/Docker/ini/72/php.ini:/etc/php.ini
     environment:
       DB_SERVER_HOST: 127.0.0.1
       MYSQL_DATABASE: myphp
