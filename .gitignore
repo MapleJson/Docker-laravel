@@ -1,4 +1,3 @@
 .idea
-.idea/*
 .DS_Store
-php72-laravel/.DS_Store
+nginx/*.conf
