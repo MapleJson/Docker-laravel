@@ -76,6 +76,7 @@ services:
       - 56:80
     volumes:
       - $HOME/Docker/nginx:/etc/nginx/conf.d
+      - $HOME/Docker/nginx/nginx.conf.notcache:/etc/nginx/nginx.conf
       - $HOME/Docker/www:/home/data/www
     environment:
       DB_SERVER_HOST: 127.0.0.1

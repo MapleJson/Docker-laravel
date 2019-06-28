@@ -76,7 +76,7 @@ services:
       - 56:80
     volumes:
       - $HOME/Docker/nginx:/etc/nginx/conf.d
-      - $HOME/docker/nginx/nginx.conf.notcache:/etc/nginx/nginx.conf
+      - $HOME/Docker/nginx/nginx.conf.notcache:/etc/nginx/nginx.conf
       - $HOME/Docker/www:/home/data/www
       - $HOME/Docker/ini/56/php.ini:/etc/php.ini
     environment:
@@ -102,7 +102,7 @@ services:
       - 70:80
     volumes:
       - $HOME/Docker/nginx:/etc/nginx/conf.d
-      - $HOME/docker/nginx/nginx.conf.notcache:/etc/nginx/nginx.conf
+      - $HOME/Docker/nginx/nginx.conf.notcache:/etc/nginx/nginx.conf
       - $HOME/Docker/www:/home/data/www
       - $HOME/Docker/ini/70/php.ini:/etc/php.ini
     environment:
@@ -128,7 +128,7 @@ services:
       - 71:80
     volumes:
       - $HOME/Docker/nginx:/etc/nginx/conf.d
-      - $HOME/docker/nginx/nginx.conf.notcache:/etc/nginx/nginx.conf
+      - $HOME/Docker/nginx/nginx.conf.notcache:/etc/nginx/nginx.conf
       - $HOME/Docker/www:/home/data/www
       - $HOME/Docker/ini/71/php.ini:/etc/php.ini
     environment:
@@ -154,7 +154,7 @@ services:
       - 72:80
     volumes:
       - $HOME/Docker/nginx:/etc/nginx/conf.d
-      - $HOME/docker/nginx/nginx.conf.notcache:/etc/nginx/nginx.conf
+      - $HOME/Docker/nginx/nginx.conf.notcache:/etc/nginx/nginx.conf
       - $HOME/Docker/www:/home/data/www
       - $HOME/Docker/ini/72/php.ini:/etc/php.ini
     environment:
