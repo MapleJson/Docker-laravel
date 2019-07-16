@@ -6,7 +6,7 @@ RUN set -eux; \
     rpm -ivh https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm && \
     rpm -ivh  http://rpms.remirepo.net/enterprise/remi-release-7.rpm && \
     yum install nginx supervisor -y && \
-    yum --enablerepo=remi,remi-php71 install php php-common php-devel php-cli php-gd php-posix php-pecl-redis php-pecl-zip php-mysqlnd php-pdo php-mbstring php-xml php-soap php-pecl-mcrypt php-fpm php-bcmath php-pecl-mongodb php-pecl-event php-process php-rdkafka -y && \
+    yum --enablerepo=remi,remi-php71 install php php-common php-devel php-cli php-gd php-posix php-pecl-redis php-pecl-zip php-mysqlnd php-pdo php-mbstring php-xml php-soap php-pecl-mcrypt php-fpm php-bcmath php-pecl-mongodb php-pecl-event php-process php-rdkafka php-yaf -y && \
     yum install git -y && \
     yum install vim -y && \
     curl -sS https://getcomposer.org/installer | php && \

@@ -100,6 +100,7 @@ services:
     - mongo-server
     ports:
       - 70:80
+      - 8282:8282
     volumes:
       - $HOME/Docker/nginx:/etc/nginx/conf.d
       - $HOME/Docker/nginx/nginx.conf.notcache:/etc/nginx/nginx.conf
