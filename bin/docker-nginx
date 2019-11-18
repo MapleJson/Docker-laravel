@@ -1,0 +1,5 @@
+#!/bin/bash
+docker exec web-nginx-php56 /bin/bash -c 'nginx -s reload'
+docker exec web-nginx-php70 /bin/bash -c 'nginx -s reload'
+docker exec web-nginx-php71 /bin/bash -c 'nginx -s reload'
+docker exec web-nginx-php72 /bin/bash -c 'nginx -s reload'
