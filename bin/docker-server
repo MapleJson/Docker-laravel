@@ -1,0 +1,24 @@
+#!/bin/bash
+
+if [[ $# -ne 1 ]]
+then
+    echo 'please input <up|stop|restart>'
+    exit 0
+fi
+
+cd $HOME/docker/php-laravel/
+
+case $1 in
+    up)
+        docker-compose up -d
+        ;;
+    restart)
+        docker-compose stop
+        docker-compose up -d
+        ;;
+    stop)
+        docker-compose stop
+        ;;
+    *)
+        echo "Parameter Error"
+esac
