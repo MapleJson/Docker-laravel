@@ -1,13 +1,11 @@
 #!/bin/bash
 
-brew services list
-
-if [[ $# -ne 1 ]]
+if [[ $# -ne 1 && $# -ne 2 ]]
 then
+    brew services list
     echo 'please input <start|restart|stop> [server_name]'
     exit 0
 fi
-
 
 if [[ $# == 1 ]];
 then
@@ -34,12 +32,12 @@ then
         *)
             echo "Parameter Error"
     esac
-    exit 0
 fi
 
 if [[ $# == 2 ]];
 then
     brew services $1 $2
-    exit 1
 fi
+
+brew services list
 
