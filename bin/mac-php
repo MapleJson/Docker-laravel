@@ -5,25 +5,29 @@ then
     echo 'please input <start|restart|stop>'
     exit 0
 fi
-if [[ $1 == start ]]
-then
-    brew services start php@7.2
-    brew services start redis
-    brew services start mongodb
-    brew services start nginx
-    brew services start mysql
-elif [[ $1 == restart ]]
-then
-    brew services restart php@7.2
-    brew services restart redis
-    brew services restart mongodb
-    brew services restart nginx
-    brew services restart mysql
-elif [[ $1 == stop ]]
-then
-    brew services stop php@7.2
-    brew services stop redis
-    brew services stop mongodb
-    brew services stop nginx
-    brew services stop mysql
-fi
+
+case $1 in
+    start)
+        brew services start php@7.2
+        brew services start redis
+        brew services start mongodb
+        brew services start nginx
+        brew services start mysql
+        ;;
+    restart)
+        brew services restart php@7.2
+        brew services restart redis
+        brew services restart mongodb
+        brew services restart nginx
+        brew services restart mysql
+        ;;
+    stop)
+        brew services stop php@7.2
+        brew services stop redis
+        brew services stop mongodb
+        brew services stop nginx
+        brew services stop mysql
+        ;;
+    *)
+        echo "Parameter Error"
+esac
