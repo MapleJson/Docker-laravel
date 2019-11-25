@@ -1,18 +1,20 @@
 #!/bin/bash
 
-if [ $# -ne 1 ]
+if [[ $# -ne 1 ]]
 then
     echo 'please input <up|stop|restart>'
     exit 0
 fi
+
 cd $HOME/docker/php-laravel/
-if [ $1 == up ]
+
+if [[ $1 == up ]]
 then
     docker-compose up -d
-elif [ $1 == stop ]
+elif [[ $1 == stop ]]
 then
     docker-compose stop
-elif [ $1 == restart ]
+elif [[ $1 == restart ]]
 then
     docker-compose stop
     docker-compose up -d

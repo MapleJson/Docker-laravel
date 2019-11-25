@@ -1,6 +1,6 @@
 #!/bin/bash
 
-if [ $# -ne 1 ];
+if [[ $# -ne 1 ]];
 then
     echo 'please input your project name'
     exit 0
@@ -14,7 +14,7 @@ cd ${basePath}; git pull
 
 read -p "请向确认git拉取更新的文件是否正确！确认请输入y:" num
 
-if [ $num != y ]
+if [[ ${num} != y ]]
 then
     echo "退出"
     exit 0

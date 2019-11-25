@@ -2,13 +2,13 @@
 
 cd $HOME/docker/www
 
-if [ $# == 1 ];
+if [[ $# == 1 ]];
 then
     git clone $1
     exit 0
 fi
 
-if [ $# == 2 ];
+if [[ $# == 2 ]];
 then
     git clone $1 $2
     exit 1

@@ -1,25 +1,25 @@
 #!/bin/bash
 
-if [ $# -ne 1 ]
+if [[ $# -ne 1 ]]
 then
     echo 'please input <start|restart|stop>'
     exit 0
 fi
-if [ $1 == start ]
+if [[ $1 == start ]]
 then
     brew services start php@7.2
     brew services start redis
     brew services start mongodb
     brew services start nginx
     brew services start mysql
-elif [ $1 == restart ]
+elif [[ $1 == restart ]]
 then
     brew services restart php@7.2
     brew services restart redis
     brew services restart mongodb
     brew services restart nginx
     brew services restart mysql
-elif [ $1 == stop ]
+elif [[ $1 == stop ]]
 then
     brew services stop php@7.2
     brew services stop redis
