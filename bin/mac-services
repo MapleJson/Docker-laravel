@@ -1,0 +1,45 @@
+#!/bin/bash
+
+brew services list
+
+if [[ $# -ne 1 ]]
+then
+    echo 'please input <start|restart|stop> [server_name]'
+    exit 0
+fi
+
+
+if [[ $# == 1 ]];
+then
+    case $1 in
+        start)
+            # 主要服务
+            brew services start php@7.1
+            brew services start mysql
+            brew services start redis
+            brew services start nginx
+
+            # 次要服务
+#            brew services start mongodb
+#            brew services start zookeeper
+#            brew services start kafka
+            ;;
+        restart | stop)
+            servers=$(brew services list | awk '$2 == "started"{print $1}')
+            for name in ${servers}
+            do
+                brew services $1 ${name}
+            done
+            ;;
+        *)
+            echo "Parameter Error"
+    esac
+    exit 0
+fi
+
+if [[ $# == 2 ]];
+then
+    brew services $1 $2
+    exit 1
+fi
+
