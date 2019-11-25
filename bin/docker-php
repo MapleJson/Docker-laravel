@@ -5,7 +5,7 @@ then
     echo 'please input <version up|stop|restart>'
     exit 0
 fi
-cd $HOME/Docker/php$1-laravel/
+cd $HOME/docker/php$1-laravel/
 if [ $2 == up ]
 then
     docker-compose up -d
