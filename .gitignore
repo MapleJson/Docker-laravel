@@ -1,3 +1,5 @@
 .idea
 .DS_Store
-nginx/*.conf
+nginx/conf.d/*.conf
+nginx/ssl/*.crt
+nginx/ssl/*.key

@@ -1,22 +1,25 @@
 #!/bin/bash
 
-if [[ $# -ne 2 ]];then
-    echo "Usage : `basename $0` somehost.com /you/app/path"
+if [[ $# -ne 2 && $# -ne 3 ]];then
+    echo "Usage : `basename $0` somehost.com /you/app/path [ssl]"
     exit 4
 fi
-
-# if  [ ! -d $2 ] ;then
-#         echo -e "please check you path,not find $2\nUsage : `basename $0` somehost.com /you/app/path"
-# exit 3
-# fi
 
 echo "127.0.0.1       $1" >> /etc/hosts
 
 echo "$1 host add to /etc/hosts successful!"
 
-touch "${HOME}/docker/nginx/${1}.conf"
+touch "${HOME}/docker/nginx/conf.d/${1}.conf"
 
-cat $HOME/docker/nginx/template.conf | sed s@template.com@"$1"@ |sed s@/php/template@"/home/data/www/$2"@ > $HOME/docker/nginx/${1}.conf
+if [[ $# == 2 ]];
+then
+    templateFile=$HOME/docker/nginx/template.conf
+else
+    templateFile=$HOME/docker/nginx/template-ssl.conf
+fi
+
+cat ${templateFile} | sed s@template.com@"$1"@ |sed s@/php/template@"/home/data/www/$2"@ > $HOME/docker/nginx/conf.d/${1}.conf
+
 if [[ $? -eq 0 ]];then
 	$HOME/docker/bin/docker-nginx
     echo -e "touch ${1}.conf successful!\nnginx reload successfal!"

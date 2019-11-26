@@ -74,8 +74,10 @@ services:
     - mongo-server
     ports:
       - 56:80
+      - 563:443
     volumes:
-      - $HOME/docker/nginx:/etc/nginx/conf.d
+      - $HOME/docker/nginx/conf.d:/etc/nginx/conf.d
+      - $HOME/docker/nginx/ssl:/etc/nginx/ssl
       - $HOME/docker/nginx/nginx.conf.notcache:/etc/nginx/nginx.conf
       - $HOME/docker/www:/home/data/www
       - $HOME/docker/ini/56/php.ini:/etc/php.ini
@@ -100,9 +102,10 @@ services:
     - mongo-server
     ports:
       - 70:80
-      - 8282:8282
+      - 703:443
     volumes:
-      - $HOME/docker/nginx:/etc/nginx/conf.d
+      - $HOME/docker/nginx/conf.d:/etc/nginx/conf.d
+      - $HOME/docker/nginx/ssl:/etc/nginx/ssl
       - $HOME/docker/nginx/nginx.conf.notcache:/etc/nginx/nginx.conf
       - $HOME/docker/www:/home/data/www
       - $HOME/docker/ini/70/php.ini:/etc/php.ini
@@ -127,8 +130,10 @@ services:
     - mongo-server
     ports:
       - 71:80
+      - 713:443
     volumes:
-      - $HOME/docker/nginx:/etc/nginx/conf.d
+      - $HOME/docker/nginx/conf.d:/etc/nginx/conf.d
+      - $HOME/docker/nginx/ssl:/etc/nginx/ssl
       - $HOME/docker/nginx/nginx.conf.notcache:/etc/nginx/nginx.conf
       - $HOME/docker/www:/home/data/www
       - $HOME/docker/ini/71/php.ini:/etc/php.ini
@@ -153,8 +158,10 @@ services:
     - mongo-server
     ports:
       - 72:80
+      - 723:443
     volumes:
-      - $HOME/docker/nginx:/etc/nginx/conf.d
+      - $HOME/docker/nginx/conf.d:/etc/nginx/conf.d
+      - $HOME/docker/nginx/ssl:/etc/nginx/ssl
       - $HOME/docker/nginx/nginx.conf.notcache:/etc/nginx/nginx.conf
       - $HOME/docker/www:/home/data/www
       - $HOME/docker/ini/72/php.ini:/etc/php.ini
