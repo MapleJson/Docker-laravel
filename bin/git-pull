@@ -1,0 +1,10 @@
+#!/bin/bash
+
+if [[ $# != 1 ]];
+then
+    echo "please input your git project path"
+    exit 0
+fi
+
+cd $1
+git pull
