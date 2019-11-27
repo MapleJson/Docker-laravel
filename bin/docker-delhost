@@ -1,0 +1,14 @@
+#!/bin/bash
+
+if [[ $# -ne 1 ]];then
+    echo "Usage : `basename $0` your host.com"
+    exit 1
+fi
+
+host="127.0.0.1       $1"
+
+sudo sed -i '' '/'"${host}"'/d' /etc/hosts
+
+rm -rf $HOME/docker/nginx/conf.d/${1}.conf
+
+echo "delete $1 host and config file successful!"
