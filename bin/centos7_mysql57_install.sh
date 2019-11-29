@@ -152,9 +152,10 @@ binlog_format=ROW
 default_storage_engine=InnoDB
 innodb_locks_unsafe_for_binlog=1
 innodb_autoinc_lock_mode=2
-innodb_buffer_pool_size = 40G
+# 根据实际服务器内存情况调整
+innodb_buffer_pool_size = 1G
 port = 3306
-socket          = /home/mysqldata/mysql.sock
+socket = /home/mysqldata/mysql.sock
 log-bin=mysql-bin
 expire_logs_days = 5
 sort_buffer_size = 1M
@@ -165,11 +166,13 @@ innodb_data_file_path=ibdata1:1G:autoextend
 innodb_log_buffer_size=32M
 innodb_log_file_size=512M
 innodb_flush_log_at_trx_commit=2
-innodb_max_dirty_pages_pct=4096
+innodb_max_dirty_pages_pct=5
 innodb_io_capacity = 10000
 sync_binlog=0
-open_files_limit=65536    #1G对应65536
-max_connections = 2000
+# 根据实际情况调整(查看错误日志)
+open_files_limit=5000    #1G对应65536
+# 根据实际情况调整(查看错误日志)
+max_connections = 400
 thread_stack = 192K
 tmp_table_size = 246M
 max_heap_table_size = 246M
@@ -181,7 +184,7 @@ max_allowed_packet=64M
 slow_query_log = 1
 long_query_time = 2
 slow_query_log_file = /home/mysql/slowquery.log
-log-error =  /home/mysql/error.log
+log-error = /home/mysql/error.log
 log-slave-updates=on
 gtid-mode=on
 enforce-gtid-consistency=on
@@ -195,9 +198,9 @@ binlog-checksum=CRC32
 master-verify-checksum=1
 slave-sql-verify-checksum=1
 binlog-rows-query-log_events=1
-report-port=143306
 port=3306
-report-host=10.2.9.14
+#report-host=10.2.9.14
+#report-port=143306
 server_id = 14
 log-slave-updates
 slave-skip-errors=all
@@ -205,16 +208,15 @@ auto_increment_increment=2
 auto_increment_offset=2
 read_only = 0
 sql_mode="NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION"
-rpl_semi_sync_master_enabled = 1
-rpl_semi_sync_master_timeout = 1000 # 1 second
-rpl_semi_sync_slave_enabled = 1
-max_connections = 5000
+#rpl_semi_sync_master_enabled = 1
+#rpl_semi_sync_master_timeout = 1000 # 1 second
+#rpl_semi_sync_slave_enabled = 1
 innodb_numa_interleave=1
 
 [mysql]
 prompt="\u@mysqldb \R:\m:\s [\d]> "
 no-auto-rehash
-
+socket = /home/mysqldata/mysql.sock
 '> /etc/my.cnf
 
 #Create a directory structure
@@ -224,3 +226,4 @@ chown -R mysql:mysql /home/mysql /home/mysqldata
 systemctl start mysqld
 
 echo -e "\033[31;36m#Now, you have finished the basic settings for msyql  #\033[0m"
+echo -e "\033[31;36m#You can execute the command to get your initial password:\n grep 'temporary password' mysql/error.log | awk '{print \$NF}'"
