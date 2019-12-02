@@ -7,8 +7,7 @@ RUN set -eux; \
     rpm -ivh  http://rpms.remirepo.net/enterprise/remi-release-7.rpm && \
     yum install nginx supervisor -y && \
     yum --enablerepo=remi,remi-php70 install php php-common php-devel php-cli php-gd php-posix php-pecl-redis php-pecl-zip php-mysqlnd php-pdo php-mbstring php-xml php-soap php-pecl-mcrypt php-mcrypt php-fpm php-bcmath php-pecl-mongodb php-pecl-event php-process php-rdkafka php-yaf -y && \
-    yum install git -y && \
-    yum install vim -y && \
+    yum install -y git vim wget telnet && \
     curl -sS https://getcomposer.org/installer | php && \
     mv composer.phar /usr/local/bin/composer
 ADD nginx.conf /etc/nginx/nginx.conf
