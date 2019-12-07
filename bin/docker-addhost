@@ -18,7 +18,7 @@ else
     templateFile=$HOME/docker/nginx/template-ssl.conf
 fi
 
-cat ${templateFile} | sed s@template.com@"$1"@ |sed s@/php/template@"/home/data/www/$2"@ > $HOME/docker/nginx/conf.d/${1}.conf
+cat ${templateFile} | sed s@template.com@"$1"@ | sed s@php_root_template@"$2"@ > $HOME/docker/nginx/conf.d/${1}.conf
 
 if [[ $? -eq 0 ]];then
 	$HOME/docker/bin/docker-nginx
