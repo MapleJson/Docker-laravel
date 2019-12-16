@@ -185,9 +185,10 @@ slow_query_log = 1
 long_query_time = 2
 slow_query_log_file = /home/mysql/slowquery.log
 log-error = /home/mysql/error.log
-log-slave-updates=on
-gtid-mode=on
-enforce-gtid-consistency=on
+# 根据实际情况调整(有主从则开启 无主从则关闭)
+log-slave-updates=off
+gtid-mode=off
+enforce-gtid-consistency=off
 slave-parallel-type=LOGICAL_CLOCK
 master-info-repository=TABLE
 relay-log-info-repository=TABLE
