@@ -3,3 +3,4 @@
 nginx/conf.d/*.conf
 nginx/ssl/*.crt
 nginx/ssl/*.key
+php-laravel/docker-compose.yml
