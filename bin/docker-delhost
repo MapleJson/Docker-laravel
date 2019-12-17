@@ -9,6 +9,6 @@ host="127.0.0.1       $1"
 
 sudo sed -i '' '/'"${host}"'/d' /etc/hosts
 
-rm -rf $HOME/docker/nginx/conf.d/${1}.conf
+rm -f $HOME/docker/nginx/conf.d/${1}.conf
 
 echo "delete $1 host and config file successful!"
