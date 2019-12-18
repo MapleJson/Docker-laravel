@@ -1,0 +1,71 @@
+#!/bin/bash
+
+if [[ ! -n "$1" ]]
+then
+    # 打印脚本的使用方法到标准输出
+    echo "Usage: `basename $0` domain1 domain2..."
+
+    # 退出脚本，退出状态码为65
+    exit 0
+fi
+
+for i in `seq $#`;
+do
+    domain=$(eval echo \$${i})
+
+    cat << EOF > ${HOME}/docker/nginx/conf.d/${domain}.com.conf
+server {
+    listen       80;
+    server_name  ${domain}.com *.${domain}.com;
+    root         "/home/www/template/${domain}";
+    location / {
+        try_files \$uri \$uri/ /index.php?\$query_string;
+        index  index.html index.htm index.php;
+        #autoindex  on;
+    }
+    location ~ \.php(.*)$ {
+        fastcgi_pass   127.0.0.1:9000;
+        fastcgi_index  index.php;
+        fastcgi_split_path_info  ^((?U).+\.php)(/?.+)$;
+        fastcgi_param  SCRIPT_FILENAME  \$document_root\$fastcgi_script_name;
+        fastcgi_param  PATH_INFO  \$fastcgi_path_info;
+        fastcgi_param  PATH_TRANSLATED  \$document_root\$fastcgi_path_info;
+        include        fastcgi_params;
+    }
+}
+EOF
+
+    echo "生成 ${domain}.com.conf nginx配置文件成功!"
+
+done
+
+#for i in ${*};
+#do
+#
+#    cat << EOF > ${HOME}/docker/nginx/conf.d/${i}.com.conf
+#server {
+#    listen       80;
+#    server_name  ${i}.com *.${i}.com;
+#    root         "/home/www/template/${i}";
+#    location / {
+#        try_files \$uri \$uri/ /index.php?\$query_string;
+#        index  index.html index.htm index.php;
+#        #autoindex  on;
+#    }
+#    location ~ \.php(.*)$ {
+#        fastcgi_pass   127.0.0.1:9000;
+#        fastcgi_index  index.php;
+#        fastcgi_split_path_info  ^((?U).+\.php)(/?.+)$;
+#        fastcgi_param  SCRIPT_FILENAME  \$document_root\$fastcgi_script_name;
+#        fastcgi_param  PATH_INFO  \$fastcgi_path_info;
+#        fastcgi_param  PATH_TRANSLATED  \$document_root\$fastcgi_path_info;
+#        include        fastcgi_params;
+#    }
+#}
+#EOF
+#
+#    #echo "生成 ${i}.com.conf nginx配置文件成功!"
+#
+#done
+
+#nginx -s reload
