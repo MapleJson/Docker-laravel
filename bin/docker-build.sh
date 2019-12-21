@@ -35,9 +35,9 @@ build_docker()
         echo "=======> 镜像${hubName}/laravel-php${ver}:${version}生成完成! <======="
         if [[ ${2} == y ]]; then
             # push到自己的仓库
-            echo -e "=======> 开始push镜像 ${hubName}/laravel-php${ver}:${version} <======="
+            echo "=======> 开始push镜像 ${hubName}/laravel-php${ver}:${version} <======="
             docker push ${hubName}/laravel-php${ver}:${version}
-            echo -e "=======> 镜像 ${hubName}/laravel-php${ver}:${version} push完成! <======="
+            echo "=======> 镜像 ${hubName}/laravel-php${ver}:${version} push完成! <======="
         fi
     done
 }
