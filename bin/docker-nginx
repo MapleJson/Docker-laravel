@@ -1,5 +1,10 @@
 #!/bin/bash
 
+if [[ $# -eq 1 ]]; then
+    docker exec web-nginx-php${1} /bin/bash -c 'nginx -s reload'
+    exit 0
+fi
+
 docker exec web-nginx-php56 /bin/bash -c 'nginx -s reload'
 docker exec web-nginx-php70 /bin/bash -c 'nginx -s reload'
 docker exec web-nginx-php71 /bin/bash -c 'nginx -s reload'
