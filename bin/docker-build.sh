@@ -10,16 +10,36 @@ ymlFile=${HOME}/docker/php-laravel/docker-compose.yml
 # 获取系统版本
 system=$(uname)
 
-for ver in ${phpVersion}
-do
-    cd ${dockerFilePath}${ver}
-    # 编译docker镜像
-    docker build -t maple52zoe/laravel-php${ver}:${version} .
-    # 将新版本号写入docker-compose.yml文件
-    if [[ ${system} -eq "Darwin" ]]; then
-        sed -i '' "s#image: maple52zoe/laravel-php${ver}:.\.0#image: maple52zoe/laravel-php${ver}:${version}#g" ${ymlFile}
-    else
-        sed -i "s#image: maple52zoe/laravel-php${ver}:.\.0#image: maple52zoe/laravel-php${ver}:${version}#g" ${ymlFile}
-    fi
+build_docker()
+{
+    for ver in ${phpVersion}
+    do
+        cd ${dockerFilePath}${ver}
+        # 编译docker镜像
+        docker build -t ${phpVersion}/laravel-php${ver}:${version} .
+        # 将新版本号写入docker-compose.yml文件
+        if [[ ${system} -eq "Darwin" ]]; then
+            sed -i '' "s#image: maple52zoe/laravel-php${ver}:.\.0#image: ${hubName}/laravel-php${ver}:${version}#g" ${ymlFile}
+        else
+            sed -i "s#image: maple52zoe/laravel-php${ver}:.\.0#image: ${hubName}/laravel-php${ver}:${version}#g" ${ymlFile}
+        fi
 
-done
+    done
+}
+read -p "是否登录docker,并push自己镜像至你的docker hub？确认请输入y:" num
+
+if [[ ${num} == y ]]; then
+
+    read -p "确认请输入你的仓库名称:" hubName
+    # 登录docker
+    docker login
+    # 编译docker
+    build_docker
+    # push到自己的仓库
+    docker push ${phpVersion}/laravel-php${ver}:${version}
+
+else
+    # 编译docker
+    build_docker
+fi
+
