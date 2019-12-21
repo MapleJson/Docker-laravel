@@ -22,22 +22,22 @@ build_docker()
 {
     for ver in ${phpVersion}
     do
-        echo "=======> 开始生成镜像 ${hubName}/laravel-php${ver}:${version} <======="
+        echo "=======> 开始生成镜像 ${1}/laravel-php${ver}:${version} <======="
         cd ${dockerFilePath}${ver}
         # 编译docker镜像
-        docker build -t ${1}/laravel-php${ver}:${version} .
+#        docker build -t ${1}/laravel-php${ver}:${version} .
         # 将新版本号写入docker-compose.yml文件
         if [[ ${system} -eq "Darwin" ]]; then
-            sed -i '' "s#image: maple52zoe/laravel-php${ver}:.\.0#image: ${1}/laravel-php${ver}:${version}#g" ${ymlFile}
+            sed -i '' "s#image: maple52zoe/laravel-php${ver}:.*#image: ${1}/laravel-php${ver}:${version}#g" ${ymlFile}
         else
-            sed -i "s#image: maple52zoe/laravel-php${ver}:.\.0#image: ${1}/laravel-php${ver}:${version}#g" ${ymlFile}
+            sed -i "s#image: maple52zoe/laravel-php${ver}:.*#image: ${1}/laravel-php${ver}:${version}#g" ${ymlFile}
         fi
-        echo "=======> 镜像${hubName}/laravel-php${ver}:${version}生成完成! <======="
+        echo "=======> 镜像${1}/laravel-php${ver}:${version}生成完成! <======="
         if [[ ${2} == y ]]; then
             # push到自己的仓库
-            echo "=======> 开始push镜像 ${hubName}/laravel-php${ver}:${version} <======="
-            docker push ${hubName}/laravel-php${ver}:${version}
-            echo "=======> 镜像 ${hubName}/laravel-php${ver}:${version} push完成! <======="
+            echo "=======> 开始push镜像 ${1}/laravel-php${ver}:${version} <======="
+            docker push ${1}/laravel-php${ver}:${version}
+            echo "=======> 镜像 ${1}/laravel-php${ver}:${version} push完成! <======="
         fi
     done
 }
