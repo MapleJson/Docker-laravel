@@ -1,8 +1,16 @@
 #!/bin/bash
 # 定义镜像版本
-version=5.0
+read -p "请输入你的镜像版本号[1.0]:" version
+
+if [[ -z "${version}" ]]; then
+	version=1.0
+fi
 # PHP版本
-phpVersion="56 70 71 72"
+read -p "请输入你要编译的PHP版本,以空格分隔[56 70 71 72]:" phpVersion
+
+if [[ -z "${phpVersion}" ]]; then
+	phpVersion="56 70 71 72"
+fi
 # Dockerfile文件目录
 dockerFilePath=${HOME}/docker/docker-files/web-nginx-php
 # 定义yml文件路径
