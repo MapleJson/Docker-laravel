@@ -22,11 +22,16 @@ services:
     image: redis
     ports:
       - 6380:6379
+    command: redis-server --appendonly yes --requirepass "!redis-password"
 
+# 若开启redis密码验证
+# 则需要修改/etc/php-fpm.d/www.conf
+# php_value[session.save_path]    = 'tcp://redis-session:6379?auth=!redis-password'
   redis-session:
     hostname: redis-session
     container_name: redis-session
     image: redis
+#    command: redis-server --appendonly yes --requirepass "!redis-password"
 
   mongo-server:
     hostname: mongo-server

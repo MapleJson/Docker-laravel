@@ -17,7 +17,7 @@ RUN sed -i \
     -e "s#user = apache#user = nginx#g" \
     -e "s#group = apache#group = nginx#g" \
     -e "s#php\_value\[session\.save\_handler\] = files#php_value[session.save_handler] = redis#g" \
-    -e "s#php\_value\[session\.save\_path]    = \/var\/lib\/php\/session#php_value[session.save_path]    = 'tcp://redis-session:6379'#g" ${php_conf} && \
+    -e "s#php\_value\[session\.save\_path]    = \/var\/lib\/php\/session#php_value[session.save_path]    = 'tcp://redis-session:6379?auth=!redis-password'#g" ${php_conf} && \
     mkdir -p /home/data/www && \
     chown -R nginx:nginx /home && \
     chmod 755 /start.sh
