@@ -41,6 +41,7 @@ build_docker()
         if [[ ${2} == y ]]; then
             # push到自己的仓库
             info "=======> 开始push镜像 ${1}/laravel-php${ver}:${version} <======="
+            docker tag ${1}/laravel-php${ver}:${version} ${1}/laravel-php${ver}:${version}
             docker push ${1}/laravel-php${ver}:${version}
             info "=======> 镜像 ${1}/laravel-php${ver}:${version} push完成! <======="
         fi
