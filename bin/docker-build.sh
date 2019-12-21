@@ -26,20 +26,27 @@ build_docker()
 
     done
 }
-read -p "是否登录docker,并push自己镜像至你的docker hub？确认请输入y:" num
+
+read -p "请输入你的仓库名称,不输入默认为[maple52zoe]:" hubName
+
+if [[ -z "${hubName}" ]]; then
+	hubName=maple52zoe
+fi
+
+echo ${hubName}
+
+read -p "是否登录docker,并push镜像至你的docker hub？确认请输入y:" num
 
 if [[ ${num} == y ]]; then
-
-    read -p "确认请输入你的仓库名称:" hubName
     # 登录docker
     docker login
-    # 编译docker
-    build_docker ${hubName}
-    # push到自己的仓库
-    docker push ${phpVersion}/laravel-php${ver}:${version}
+fi
 
-else
-    # 编译docker
-    build_docker "maple52zoe"
+# 编译docker
+build_docker ${hubName}
+
+if [[ ${num} == y ]]; then
+    # push到自己的仓库
+    docker push ${hubName}/laravel-php${ver}:${version}
 fi
 
