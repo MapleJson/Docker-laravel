@@ -16,12 +16,12 @@ build_docker()
     do
         cd ${dockerFilePath}${ver}
         # 编译docker镜像
-        docker build -t ${phpVersion}/laravel-php${ver}:${version} .
+        docker build -t ${1}/laravel-php${ver}:${version} .
         # 将新版本号写入docker-compose.yml文件
         if [[ ${system} -eq "Darwin" ]]; then
-            sed -i '' "s#image: maple52zoe/laravel-php${ver}:.\.0#image: ${hubName}/laravel-php${ver}:${version}#g" ${ymlFile}
+            sed -i '' "s#image: maple52zoe/laravel-php${ver}:.\.0#image: ${1}/laravel-php${ver}:${version}#g" ${ymlFile}
         else
-            sed -i "s#image: maple52zoe/laravel-php${ver}:.\.0#image: ${hubName}/laravel-php${ver}:${version}#g" ${ymlFile}
+            sed -i "s#image: maple52zoe/laravel-php${ver}:.\.0#image: ${1}/laravel-php${ver}:${version}#g" ${ymlFile}
         fi
 
     done
@@ -34,12 +34,12 @@ if [[ ${num} == y ]]; then
     # 登录docker
     docker login
     # 编译docker
-    build_docker
+    build_docker ${hubName}
     # push到自己的仓库
     docker push ${phpVersion}/laravel-php${ver}:${version}
 
 else
     # 编译docker
-    build_docker
+    build_docker "maple52zoe"
 fi
 
