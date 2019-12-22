@@ -24,14 +24,14 @@ services:
       - 6380:6379
     command: redis-server --appendonly yes --requirepass "!redis-password"
 
-# 若开启redis密码验证
-# 则需要修改/etc/php-fpm.d/www.conf
-# php_value[session.save_path]    = 'tcp://redis-session:6379?auth=!redis-password'
+  # 若开启redis密码验证
+  # 则需要修改/etc/php-fpm.d/www.conf
+  # php_value[session.save_path]    = 'tcp://redis-session:6379?auth=!redis-password'
   redis-session:
     hostname: redis-session
     container_name: redis-session
     image: redis
-#    command: redis-server --appendonly yes --requirepass "!redis-password"
+  #    command: redis-server --appendonly yes --requirepass "!redis-password"
 
   mongo-server:
     hostname: mongo-server
@@ -73,10 +73,10 @@ services:
     container_name: web-nginx-php56
     image: maple52zoe/laravel-php56:4.0
     links:
-    - mysql-server
-    - redis-server
-    - redis-session
-    - mongo-server
+      - mysql-server
+      - redis-server
+      - redis-session
+      - mongo-server
     ports:
       - 56:80
       - 563:443
@@ -101,10 +101,10 @@ services:
     container_name: web-nginx-php70
     image: maple52zoe/laravel-php70:4.0
     links:
-    - mysql-server
-    - redis-server
-    - redis-session
-    - mongo-server
+      - mysql-server
+      - redis-server
+      - redis-session
+      - mongo-server
     ports:
       - 70:80
       - 703:443
@@ -129,10 +129,10 @@ services:
     container_name: web-nginx-php71
     image: maple52zoe/laravel-php71:4.0
     links:
-    - mysql-server
-    - redis-server
-    - redis-session
-    - mongo-server
+      - mysql-server
+      - redis-server
+      - redis-session
+      - mongo-server
     ports:
       - 71:80
       - 713:443
@@ -157,10 +157,10 @@ services:
     container_name: web-nginx-php72
     image: maple52zoe/laravel-php72:3.0
     links:
-    - mysql-server
-    - redis-server
-    - redis-session
-    - mongo-server
+      - mysql-server
+      - redis-server
+      - redis-session
+      - mongo-server
     ports:
       - 72:80
       - 723:443
