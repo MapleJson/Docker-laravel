@@ -50,7 +50,7 @@ build_docker()
         if [[ ${2} == y ]]; then
             # push到自己的仓库
             info "=======> 开始push镜像 ${1}/${image}${ver}:${version} <======="
-            docker tag ${1}/${image}${ver}:${version} ${1}/${image}${ver}:${version}
+            #docker tag ${1}/${image}${ver}:${version} ${1}/${image}${ver}:${version}
             docker push ${1}/${image}${ver}:${version}
             info "=======> 镜像 ${1}/${image}${ver}:${version} push完成! <======="
         fi
