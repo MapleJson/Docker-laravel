@@ -13,10 +13,10 @@ if [[ -z "${version}" ]]; then
 	version=1.0
 fi
 # PHP版本
-read -p "请输入你要编译的PHP版本,以空格分隔,默认为[56 70 71 72]:" phpVersion
+read -p "请输入你要编译的PHP版本,以空格分隔,默认为[56 70 71 72 73]:" phpVersion
 
 if [[ -z "${phpVersion}" ]]; then
-	phpVersion="56 70 71 72"
+	phpVersion="56 70 71 72 73"
 fi
 # Dockerfile文件目录
 dockerFilePath=${HOME}/docker/docker-files/web-nginx-php

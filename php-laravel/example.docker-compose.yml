@@ -179,3 +179,31 @@ services:
       PHP_TZ: Asia/Shanghai
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: 123456
+
+  web-nginx-php73:
+    hostname: web-nginx-php73
+    container_name: web-nginx-php73
+    image: maple52zoe/laravel-php73:1.0
+    links:
+      - mysql-server
+      - redis-server
+      - redis-session
+      - mongo-server
+    ports:
+      - 73:80
+      - 733:443
+    volumes:
+      - $HOME/docker/nginx/conf.d:/etc/nginx/conf.d
+      - $HOME/docker/nginx/ssl:/etc/nginx/ssl
+      - $HOME/docker/nginx/nginx.conf.notcache:/etc/nginx/nginx.conf
+      - $HOME/docker/www:/home/data/www
+      - $HOME/docker/ini/73/php.ini:/etc/php.ini
+    environment:
+      DB_SERVER_HOST: 127.0.0.1
+      MYSQL_DATABASE: myphp
+      MYSQL_USER: php
+      MYSQL_PASSWORD: php-mysql
+      MYSQL_ROOT_PASSWORD: 123456
+      PHP_TZ: Asia/Shanghai
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: 123456
