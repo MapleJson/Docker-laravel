@@ -1,11 +1,12 @@
 #!/bin/bash
 
-if [[ $# -eq 1 ]]; then
-    docker exec web-nginx-php${1} /bin/bash -c 'nginx -s reload'
-    exit 0
+read -p "请输入你要重启的PHP镜像版本,以空格分隔,默认为[56 70 71 72 73]:" phpVersion
+
+if [[ -z "${phpVersion}" ]]; then
+	phpVersion="56 70 71 72 73"
 fi
 
-docker exec web-nginx-php56 /bin/bash -c 'nginx -s reload'
-docker exec web-nginx-php70 /bin/bash -c 'nginx -s reload'
-docker exec web-nginx-php71 /bin/bash -c 'nginx -s reload'
-docker exec web-nginx-php72 /bin/bash -c 'nginx -s reload'
+for version in "${phpVersion}"
+do
+    docker exec web-nginx-php"${version}" /bin/bash -c 'chown nginx.nginx /home/data/www/* -R'
+done

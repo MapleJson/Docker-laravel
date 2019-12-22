@@ -22,7 +22,9 @@ fi
 
 /usr/bin/rsync  -vzrtopg --omit-dir-times --delete --exclude ".git" --exclude ".gitignore" ${basePath}/ ${wwwPath}/
 
-docker exec web-nginx-php56 /bin/bash -c 'chown nginx.nginx /home/data/www/* -R'
-docker exec web-nginx-php70 /bin/bash -c 'chown nginx.nginx /home/data/www/* -R'
-docker exec web-nginx-php71 /bin/bash -c 'chown nginx.nginx /home/data/www/* -R'
-docker exec web-nginx-php72 /bin/bash -c 'chown nginx.nginx /home/data/www/* -R'
+phpVersion="56 70 71 72 73"
+
+for version in "${phpVersion}"
+do
+    docker exec web-nginx-php"${version}" /bin/bash -c 'chown nginx.nginx /home/data/www/* -R'
+done
