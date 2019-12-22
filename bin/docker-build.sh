@@ -32,14 +32,15 @@ info()
 
 build_docker()
 {
+    # 生成新的docker-compose.yml文件
+    cp ${HOME}/docker/php-laravel/example.docker-compose.yml ${ymlFile}
+
     for ver in ${phpVersion}
     do
         info "=======> 开始生成镜像 ${1}/${image}${ver}:${version} <======="
         cd ${dockerFilePath}${ver} || continue
         # 编译docker镜像
         docker build -t ${1}/${image}${ver}:${version} .
-        # 生成新的docker-compose.yml文件
-        cp ${HOME}/docker/php-laravel/example.docker-compose.yml ${ymlFile}
         # 将新版本号写入docker-compose.yml文件
         if [[ ${system} == "Darwin" ]]; then
             sed -i '' "s#image: maple52zoe/php${ver}:.*#image: ${1}/${image}${ver}:${version}#g" ${ymlFile}
