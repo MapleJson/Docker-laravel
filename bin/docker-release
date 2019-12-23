@@ -24,7 +24,7 @@ fi
 
 phpVersion="56 70 71 72 73"
 
-for version in "${phpVersion}"
+for version in ${phpVersion}
 do
     docker exec web-nginx-php"${version}" /bin/bash -c 'chown nginx.nginx /home/data/www/* -R'
 done
