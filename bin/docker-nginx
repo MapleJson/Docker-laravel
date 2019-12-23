@@ -6,7 +6,8 @@ if [[ -z "${phpVersion}" ]]; then
 	phpVersion="56 70 71 72 73"
 fi
 
-for version in "${phpVersion}"
+for version in ${phpVersion}
 do
-    docker exec web-nginx-php"${version}" /bin/bash -c 'chown nginx.nginx /home/data/www/* -R'
+    docker exec web-nginx-php${version} /bin/bash -c 'nginx -s reload'
+    echo -e "\033[32m web-nginx-php${version} nginx reload successfully! \033[0m"
 done
